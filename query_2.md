@@ -105,20 +105,49 @@ Caricate un secondo file nella stessa repo di ieri db-university con le query di
 - Selezionare tutti i Corsi di Laurea Magistrale del Dipartimento di Neuroscienze
 
     > SELECT `degrees`.`id`, `degrees`.`name`, `degrees`.`level`, `departments`.`name` AS 'department_name' 
-    FROM `departments` 
-    INNER JOIN `degrees` 
-    ON `departments`.`id` = `degrees`.`department_id` 
-    WHERE `departments`.`name` = 'dipartimento di neuroscienze' 
-    AND `degrees`.`level` = 'magistrale';
+        FROM `departments` 
+        INNER JOIN `degrees` 
+        ON `departments`.`id` = `degrees`.`department_id` 
+        WHERE `departments`.`name` = 'dipartimento di neuroscienze' 
+        AND `degrees`.`level` = 'magistrale';
 
-    return: 1 row
+        return: 1 row
 
-    | id  | name                                                  | level      | department_name              |
-    | --- | ----------------------------------------------------- | ---------- | ---------------------------- |
-    | 44  | Corso di Laurea Magistrale in Odontoiatria e Prote... | magistrale | Dipartimento di Neuroscienze |
+        | id  | name                                                  | level      | department_name              |
+        | --- | ----------------------------------------------------- | ---------- | ---------------------------- |
+        | 44  | Corso di Laurea Magistrale in Odontoiatria e Prote... | magistrale | Dipartimento di Neuroscienze |
 
 
 - Selezionare tutti i corsi in cui insegna Fulvio Amato (id=44)
+
+    > SELECT `id` FROM `teachers` WHERE `name` = 'fulvio' AND `surname` = 'amato'; <!-- to check the teacher's id -->
+        
+        return: id = 44
+
+    > SELECT `courses`.`id` AS 'course_id', `courses`.`name` AS 'course_name', `courses`.`description`, `teachers`.`id` AS 'teacher_id', `teachers`.`name`, `teachers`.`surname`
+        FROM `courses` 
+        INNER JOIN `course_teacher` 
+        ON `courses`.`id` = `course_teacher`.`course_id` 
+        INNER JOIN `teachers` 
+        ON `course_teacher`.`teacher_id` = `teachers`.`id`
+        WHERE `teachers`.`id` = 44;
+
+        return: 11 rows
+
+        | course_id	| course_name                | description                                           | teacher_id | name   | surname |
+        | ---------	| -------------------------- | ----------------------------------------------------- | ---------- | ------ | ------- |
+        | 23        | impedit et eaque           | Ut autem omnis repellendus officiis. Quia optio es... | 44         | Fulvio | Amato   |
+        | 155       | explicabo ab voluptas      | Nam molestias iste sed error. Ullam veniam maxime ... | 44         | Fulvio | Amato   |
+        | 170       | ullam ullam dignissimos    | Perferendis voluptate et ratione sunt. Laborum har... | 44         | Fulvio | Amato   |
+        | 251       | aut pariatur a             | Sequi sint expedita sint tempora enim et eum. Magn... | 44         | Fulvio | Amato   |
+        | 489       | alias voluptatibus sed     | Et minima molestiae eveniet. Iste est veritatis mo... | 44         | Fulvio | Amato   |
+        | 601       | facilis adipisci provident | Et aut id aut officia. Doloremque quaerat sit et a... | 44         | Fulvio | Amato   |
+        | 725       | doloribus nemo iure        | Ea quae porro laudantium ut. Explicabo et assumend... | 44         | Fulvio | Amato   |
+        | 766       | et quasi enim              | Et ipsa enim animi dolor. Dolore et dicta sunt. Fu... | 44         | Fulvio | Amato   |
+        | 1016      | facilis pariatur qui       | Dolores unde ex suscipit sint quia. A debitis dolo... | 44         | Fulvio | Amato   |
+        | 1017      | dolor repellat dignissimos | Aut est id qui pariatur error. Nobis sint eum ut e... | 44         | Fulvio | Amato   |
+        | 1259      | magni magni omnis          | Maxime est est vitae. Natus ut reiciendis veniam. ... | 44         | Fulvio | Amato   |
+
 
 - Selezionare tutti gli studenti con i dati relativi al corso di laurea a cui sono iscritti e il relativo dipartimento, in ordine alfabetico per cognome e nome
 
