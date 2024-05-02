@@ -170,6 +170,24 @@ Caricate un secondo file nella stessa repo di ieri db-university con le query di
 
 - Selezionare tutti i corsi di laurea con i relativi corsi e insegnanti
 
+    > SELECT `courses`.`name` AS 'course_name', `degrees`.`name` AS 'degree_name', `teachers`.`id` AS 'teacher_id', `teachers`.`name` AS 'teacher_name', `teachers`.`surname` AS 'teacher_surname'
+        FROM `courses`
+        JOIN `degrees`
+        ON `courses`.`degree_id` = `degrees`.`id`
+        JOIN `course_teacher`
+        ON `courses`.`id` = `course_teacher`.`course_id`
+        JOIN `teachers`
+        ON `course_teacher`.`teacher_id` = `teachers`.`id`;
+
+        return: 1317 rows
+
+        | course_name                 | degree_name                                   | teacher_id | teacher_name | teacher_surname |
+        | --------------------------- | --------------------------------------------- | ---------- | ------------ | --------------- |
+        | corporis consequatur labore | Corso di Laurea Magistrale in Biologia marina | 1          | Artemide     | Rizzi           |
+        | est ratione qui             | Corso di Laurea in Ingegneria Civile          | 1          | Artemide     | Rizzi           |
+        | ...                         | ...                                           | ...        | ...          | ...             |
+
+
 - Selezionare tutti i docenti che insegnano nel Dipartimento di Matematica (54)
 
 
