@@ -12,7 +12,8 @@ Caricate un secondo file nella stessa repo di ieri db-university con le query di
         FROM `students` 
         GROUP BY YEAR(`enrolment_date`);
 
-        retrun:
+        retrun: 4 rows
+
         | enrolments_by_year | YEAR(enrolment_date) |
         | ------------------ | -------------------- |
         | 912                | 2018                 |
@@ -22,6 +23,23 @@ Caricate un secondo file nella stessa repo di ieri db-university con le query di
 
 
 - Contare gli insegnanti che hanno l'ufficio nello stesso edificio
+
+    > SELECT COUNT(`id`) AS 'teachers_by_office', `office_address`
+        FROM `teachers`
+        GROUP BY `office_address`;
+
+        return: 29 rows
+
+        | teachers_by_office | office_address           |
+        | ------------------ | ------------------------ |
+        | 1                  | Borgo Demis 1            |
+        | 8                  | Borgo Elga 89            |
+        | 4                  | Borgo Elio 234 Piano 4   |
+        | 1                  | Borgo Ippolito 5 Piano 5 |
+        | ...                | ...                      |
+        | ...                | ...                      |
+        | 5                  | Strada Vitali 8 Piano 0  |
+        | 1                  | Via Elga 7 Piano 4       |
 
 - Calcolare la media dei voti di ogni appello d'esame
 
