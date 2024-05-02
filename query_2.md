@@ -100,9 +100,23 @@ Caricate un secondo file nella stessa repo di ieri db-university con le query di
         | 20  | 53        | Joshua  | Vitale    | 1980-08-31    | GRFBKR76L42T308O | 2021-03-27     | 620052h             | longo@benedetti.com | Corso di Laurea in Economia |
         | 57  | 53        | Doriana | Benedetti | 1978-03-22    | QSFGPL05R66U759U | 2019-05-01     | 620089o             | farina@montanari.it | Corso di Laurea in Economia |
         | ... | ...       | ...     | ...       | ...           | ...              | ...            | ...                 | ...                 | ...                         |
-        
+
 
 - Selezionare tutti i Corsi di Laurea Magistrale del Dipartimento di Neuroscienze
+
+    > SELECT `degrees`.`id`, `degrees`.`name`, `degrees`.`level`, `departments`.`name` AS 'department_name' 
+    FROM `departments` 
+    INNER JOIN `degrees` 
+    ON `departments`.`id` = `degrees`.`department_id` 
+    WHERE `departments`.`name` = 'dipartimento di neuroscienze' 
+    AND `degrees`.`level` = 'magistrale';
+
+    return: 1 row
+
+    | id  | name                                                  | level      | department_name              |
+    | --- | ----------------------------------------------------- | ---------- | ---------------------------- |
+    | 44  | Corso di Laurea Magistrale in Odontoiatria e Prote... | magistrale | Dipartimento di Neuroscienze |
+
 
 - Selezionare tutti i corsi in cui insegna Fulvio Amato (id=44)
 
