@@ -87,6 +87,21 @@ Caricate un secondo file nella stessa repo di ieri db-university con le query di
 
 - Selezionare tutti gli studenti iscritti al Corso di Laurea in Economia
 
+    > SELECT `students`.`*`, `degrees`.`name` AS 'degree_name' 
+        FROM `students` 
+        INNER JOIN `degrees` 
+        ON `students`.`degree_id` = `degrees`.`id` 
+        WHERE `degrees`.`name` = 'corso di laurea in economia';
+
+        return: 68 rows
+
+        | id  | degree_id | name    | surname   | date_of_birth | fiscal_code      | enrolment_date | registration_number | email               | degree_name                 |
+        | --- | --------- | ------- | --------- | ------------- | ---------------- | -------------- | ------------------- | ------------------- | --------------------------- |
+        | 20  | 53        | Joshua  | Vitale    | 1980-08-31    | GRFBKR76L42T308O | 2021-03-27     | 620052h             | longo@benedetti.com | Corso di Laurea in Economia |
+        | 57  | 53        | Doriana | Benedetti | 1978-03-22    | QSFGPL05R66U759U | 2019-05-01     | 620089o             | farina@montanari.it | Corso di Laurea in Economia |
+        | ... | ...       | ...     | ...       | ...           | ...              | ...            | ...                 | ...                 | ...                         |
+        
+
 - Selezionare tutti i Corsi di Laurea Magistrale del Dipartimento di Neuroscienze
 
 - Selezionare tutti i corsi in cui insegna Fulvio Amato (id=44)
