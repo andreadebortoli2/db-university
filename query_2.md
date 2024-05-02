@@ -214,3 +214,53 @@ Caricate un secondo file nella stessa repo di ieri db-university con le query di
 ## BONUS: 
 
 - Selezionare per ogni studente il numero di tentativi sostenuti per ogni esame, stampando anche il voto massimo. Successivamente, filtrare i tentativi con voto minimo 18.
+
+        <!-- prima parte: Selezionare per ogni studente il numero di tentativi sostenuti per ogni esame, stampando anche il voto massimo -->
+
+    > SELECT `students`.`id`, `students`.`name`, `students`.`surname`, COUNT(`exam_id`) AS 'exam_try', MAX(`vote`)
+        FROM `exam_student`
+        JOIN `students`
+        ON `exam_student`.`student_id` = `students`.`id`
+        GROUP BY `student_id`
+
+        return: 4979 rows
+
+        | id  | name    | surname  | exam_try | MAX(`vote`) |
+        | --- | ------- | -------- | -------- | ----------- |
+        | 1   | Antonio | D'angelo | 9        | 29          |
+        | 2   | Nico    | Bianco   | 7        | 31          |
+        | ... | ...     | ...      | ...      | ...         |
+
+
+        <!-- seconda parte: Successivamente, filtrare i tentativi con voto minimo 18 -->
+
+    > SELECT `students`.`id`, `students`.`name`, `students`.`surname`, COUNT(IF(`vote` >= 18, 1, NULL)) AS 'number_of_try_with_vote_over_18'
+        FROM `exam_student`
+        JOIN `students`
+        ON `exam_student`.`student_id` = `students`.`id`
+        GROUP BY `student_id`
+
+        retrun: 4979 rows
+
+        | id  | name    | surname  | number_of_try_with_vote_over_18 |
+        | --- | ------- | -------- | ------------------------------- |
+        | 1   | Antonio | D'angelo | 5                               |
+        | 2   | Nico    | Bianco   | 3                               |
+        | ... | ...     | ...      | ...                             |
+
+
+        <!-- tutto insieme -->
+
+    > SELECT `students`.`id`, `students`.`name`, `students`.`surname`, COUNT(`exam_id`) AS 'exam_try', MAX(`vote`), COUNT(IF(`vote` >= 18, 1, NULL)) AS 'number_of_try_with_vote_over_18'
+        FROM `exam_student`
+        JOIN `students`
+        ON `exam_student`.`student_id` = `students`.`id`
+        GROUP BY `student_id`
+
+        return: 4979 rows
+
+        | id  | name    | surname  | exam_try | MAX(`vote`) | number_of_try_with_vote_over_18 |
+        | --- | ------- | -------- | -------- | ----------- | ------------------------------- |
+        | 1   | Antonio | D'angelo | 9        | 29          | 5                               |
+        | 2   | Nico    | Bianco   | 7        | 31          | 3                               |
+        | ... | ...     | ...      | ...      | ...         | ...                             |
