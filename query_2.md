@@ -151,6 +151,23 @@ Caricate un secondo file nella stessa repo di ieri db-university con le query di
 
 - Selezionare tutti gli studenti con i dati relativi al corso di laurea a cui sono iscritti e il relativo dipartimento, in ordine alfabetico per cognome e nome
 
+    > SELECT `students`.`name`, `students`.`surname`, `degrees`.`name` AS 'degree_name', `departments`.`name` AS 'department_name'
+        FROM `students` 
+        JOIN `degrees` 
+        ON `students`.`degree_id` = `degrees`.`id` 
+        JOIN `departments` 
+        ON `degrees`.`department_id` = `departments`.`id`
+        ORDER BY `students`.`surname` ASC, `students`.`name`;
+
+        return: 5000 rows
+
+        | name     | surname | degree_name                                           | department-name                                       |
+        | -------- | ------- | ----------------------------------------------------- | ----------------------------------------------------- |
+        | Brigitta | Amato   | Corso di Laurea Magistrale in Relazioni Internazio... | Dipartimento di Scienze politiche, giuridiche e st... |
+        | Carlo    | Amato   | Corso di Laurea in Ingegneria per l'Ambiente e il ... | Dipartimento di Ingegneria civile, edile e ambient... |
+        | ...      | ...     | ...                                                   | ...                                                   |
+
+
 - Selezionare tutti i corsi di laurea con i relativi corsi e insegnanti
 
 - Selezionare tutti i docenti che insegnano nel Dipartimento di Matematica (54)
