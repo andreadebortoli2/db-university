@@ -8,6 +8,19 @@ Caricate un secondo file nella stessa repo di ieri db-university con le query di
 
 - Contare quanti iscritti ci sono stati ogni anno
 
+    > SELECT COUNT(`id`) AS 'enrolments_by_year', YEAR(`enrolment_date`) 
+        FROM `students` 
+        GROUP BY YEAR(`enrolment_date`);
+
+        retrun:
+        | enrolments_by_year | YEAR(enrolment_date) |
+        | ------------------ | -------------------- |
+        | 912                | 2018                 |
+        | 1709               | 2019                 |
+        | 1645               | 2020                 |
+        | 734                | 2021                 |
+
+
 - Contare gli insegnanti che hanno l'ufficio nello stesso edificio
 
 - Calcolare la media dei voti di ogni appello d'esame
