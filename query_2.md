@@ -61,6 +61,27 @@ Caricate un secondo file nella stessa repo di ieri db-university con le query di
 
 - Contare quanti corsi di laurea ci sono per ogni dipartimento
 
+    > SELECT COUNT(`id`) AS 'degrees_by_department', `department_id`
+        FROM `degrees`
+        GROUP BY `department_id`;
+
+        return: 12 rows
+
+        | degrees_by_department | department_id |
+        | --------------------- | ------------- |
+        | 10                    | 1             |
+        | 4                     | 2             |
+        | 4                     | 3             |
+        | 9                     | 4             |
+        | 4                     | 5             |
+        | 6                     | 6             |
+        | 7                     | 7             |
+        | 8                     | 8             |
+        | 5                     | 9             |
+        | 8                     | 10            |
+        | 3                     | 11            |
+        | 7                     | 12            |
+
 
 ## Joins
 
