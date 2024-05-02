@@ -41,7 +41,23 @@ Caricate un secondo file nella stessa repo di ieri db-university con le query di
         | 5                  | Strada Vitali 8 Piano 0  |
         | 1                  | Via Elga 7 Piano 4       |
 
+
 - Calcolare la media dei voti di ogni appello d'esame
+
+    > SELECT AVG(`vote`), `exam_id` 
+        FROM `exam_student` 
+        GROUP BY `exam_id`;
+
+        return: 4078 rows
+
+        | AVG(`vote`) | exam_id |
+        | ----------- | ------- |
+        | 16.8824     | 1       |
+        | 16.4615     | 2       |
+        | 20.3333     | 3       |
+        | 27.0000     | 4       |
+        | ...         | ...     |
+
 
 - Contare quanti corsi di laurea ci sono per ogni dipartimento
 
